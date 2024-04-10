@@ -15,9 +15,9 @@ const app = express();
 // });
 
 app.use(cors({
-    // origin: process.env.CORS_ORIGIN,
+    origin: process.env.CORS_ORIGIN,
     // origin: 'http://localhost:5173',
-    origin:true,
+    // origin:true,
     credentials: true,
     methods:["GET","POST","PUT","PATCH","DELETE"]
 }))
