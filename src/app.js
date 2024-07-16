@@ -14,9 +14,25 @@ const app = express();
 //     next();
 // });
 
+const allowedOrigins = [
+    'http://localhost:5173',
+    'https://video-flixer.vercel.app/'
+];
+
 app.use(cors({
-    origin: process.env.CORS_ORIGIN,
-    // origin: 'http://localhost:5173',
+    // origin: process.env.CORS_ORIGIN,
+    origin: function (origin, callback) {
+        // Allow requests with no origin, like mobile apps or curl requests
+        if (!origin) return callback(null, true);
+
+        if (allowedOrigins.indexOf(origin) !== -1) {
+            // Origin is allowed
+            callback(null, true);
+        } else {
+            // Origin is not allowed
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
     // origin:true,
     credentials: true,
     methods:["GET","POST","PUT","PATCH","DELETE"]
