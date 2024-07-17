@@ -16,7 +16,7 @@ const app = express();
 
 const allowedOrigins = [
     'http://localhost:5173',
-    'https://video-flixer.vercel.app/'
+    'https://video-flixer.vercel.app'
 ];
 
 app.use(cors({
